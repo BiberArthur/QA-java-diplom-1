@@ -24,7 +24,7 @@ public class IngredientParameterizesTest {
     }
 
     // Метод для предоставления данных для параметризованных тестов
-    @Parameterized.Parameters
+    @Parameterized.Parameters (name = "Тестовые данные: type={0}, name=\"{1}\", price={2}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {IngredientType.FILLING, "cutlet", 100},
@@ -44,21 +44,16 @@ public class IngredientParameterizesTest {
 
     @Test
     public void testGetName() {
-        assertEquals(name, ingredient.getName()); // Проверяем, что имя соответствует ожидаемому
+        assertEquals("Проверка имени", name, ingredient.getName());
     }
 
     @Test
     public void testGetPrice() {
-        assertEquals(price, ingredient.getPrice(), 0.01); // Проверяем, что цена соответствует ожидаемому
+        assertEquals("Проверка цены", price, ingredient.getPrice(), 0.01); // Проверяем, что цена соответствует ожидаемому
     }
 
     @Test
     public void testGetType() {
-        assertEquals(type, ingredient.getType()); // Проверяем, что тип соответствует ожидаемому
+        assertEquals("Проверка типа", type, ingredient.getType()); // Проверяем, что тип соответствует ожидаемому
     }
 }
-
-
-
-
-

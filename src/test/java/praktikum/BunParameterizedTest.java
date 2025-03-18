@@ -27,13 +27,15 @@ public class BunParameterizedTest {
               //  {"invalid bun, 20}
         });
     }
-        @Test
-        public void testBun() {
-            Bun bun = new Bun(name, price);
-
-            assertEquals("Имя булочки.", name, bun.getName());
-            assertEquals("Цена булочки.", price, bun.getPrice(), 0.01);
-        }
-
+    @Test
+    public void testBunName() {
+        Bun bun = new Bun(name, price);
+        assertEquals("Имя булочки.", name, bun.getName());
+    }
+    @Test
+    public void testBunPrice() {
+        Bun bun = new Bun(name, price);
+        assertEquals("Цена булочки.", price, bun.getPrice(), 0.01);
     }
 
+    }

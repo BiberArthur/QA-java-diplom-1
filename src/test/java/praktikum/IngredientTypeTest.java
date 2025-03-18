@@ -1,14 +1,15 @@
 package praktikum;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class IngredientTypeTest {
 
     @Test
     public void testIngredientTypeValues() {
         // Проверка наличия всех значений перечисления
-        IngredientType[] expectedTypes = { IngredientType.SAUCE, IngredientType.FILLING };
+        IngredientType[] expectedTypes = {IngredientType.SAUCE, IngredientType.FILLING};
         assertArrayEquals(expectedTypes, IngredientType.values());
     }
 
@@ -16,12 +17,10 @@ public class IngredientTypeTest {
     public void testIngredientTypeUsage() {
         // Создаем ингредиент и проверяем его тип
         Ingredient sauce = new Ingredient(IngredientType.SAUCE, "hot sauce", 100);
-        assertEquals(IngredientType.SAUCE, sauce.getType());
+        assertEquals("Проверка типа соуса", IngredientType.SAUCE, sauce.getType());
 
         Ingredient filling = new Ingredient(IngredientType.FILLING, "cutlet", 150);
-        assertEquals(IngredientType.FILLING, filling.getType());
+        assertEquals("Проверка типа начинки", IngredientType.FILLING, filling.getType());
     }
 
 }
-
-

@@ -2,9 +2,9 @@ package praktikum;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
 
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class BurgerTest {
@@ -39,9 +39,10 @@ public class BurgerTest {
     public void testAddIngredientWithMocks() {
         burger.addIngredient(ingredientMock1);
         burger.addIngredient(ingredientMock2);
-        assertEquals(2, burger.ingredients.size()); // Проверка, что два ингредиента добавлены
-        assertEquals(ingredientMock1, burger.ingredients.get(0)); // Проверка первого
-        assertEquals(ingredientMock2, burger.ingredients.get(1)); // Проверка второго
+
+        assertEquals("Проверка, что два ингредиента добавлены", 2, burger.ingredients.size());
+        assertEquals("Проверка первого ингредиента", ingredientMock1, burger.ingredients.get(0));
+        assertEquals("Проверка второго ингредиента", ingredientMock2, burger.ingredients.get(1));
     }
 
     @Test
@@ -49,8 +50,9 @@ public class BurgerTest {
         burger.addIngredient(ingredientMock1);
         burger.addIngredient(ingredientMock2);
         burger.removeIngredient(1); // Удаляем второй ингредиент
-        assertEquals(1, burger.ingredients.size()); // Проверка что остался только один ингредиент
-        assertEquals(ingredientMock1, burger.ingredients.get(0)); // и что он правельный
+
+        assertEquals("Проверка, что остался только один ингредиент", 1, burger.ingredients.size());
+        assertEquals("Проверка, что остался правильный ингредиент", ingredientMock1, burger.ingredients.get(0));
     }
 
     @Test
@@ -58,8 +60,9 @@ public class BurgerTest {
         burger.addIngredient(ingredientMock1);
         burger.addIngredient(ingredientMock2);
         burger.moveIngredient(0, 1); // Перемещаем ingredientMock1 на вторую позицию
-        assertEquals(ingredientMock2, burger.ingredients.get(0));
-        assertEquals(ingredientMock1, burger.ingredients.get(1));
+
+        assertEquals("Проверка, что первый ингредиент перемещен на вторую позицию", ingredientMock2, burger.ingredients.get(0));
+        assertEquals("Проверка, что второй ингредиент теперь первый", ingredientMock1, burger.ingredients.get(1));
     }
 
     @Test
@@ -67,14 +70,13 @@ public class BurgerTest {
         burger.addIngredient(ingredientMock1);
         burger.addIngredient(ingredientMock2);
         float expectedPrice = bunMock.getPrice() * 2 + ingredientMock1.getPrice() + ingredientMock2.getPrice();
-        assertEquals(expectedPrice, burger.getPrice(), 0.001);
-    }
 
+        assertEquals("Проверка итоговой цены", expectedPrice, burger.getPrice(), 0.001);
+    }
 
     @Test
     public void testGetReceiptWithMocks() {
         burger.setBuns(bunMock);
-
         burger.addIngredient(ingredientMock1);
         burger.addIngredient(ingredientMock2);
 
@@ -85,6 +87,6 @@ public class BurgerTest {
                         String.format("(==== %s ====)%n", bunMock.getName()) +
                         String.format("%nPrice: %f%n", burger.getPrice());
 
-        assertEquals(expectedReceipt, burger.getReceipt());
+        assertEquals("Проверка чека", expectedReceipt, burger.getReceipt());
     }
 }
